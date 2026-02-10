@@ -1,3 +1,5 @@
+package java_pack;
+
 public class Carro {
     String marca;
 
@@ -9,7 +11,14 @@ public class Carro {
         this.marca = marca;
     }
 
-    public void acelerar() {
+    protected void acelerar() {
         System.out.println("Acelerando o " + this.marca);
+    }
+}
+
+class Rodas {
+    public Rodas () {
+        Carro carro = new Carro("Renault");
+        carro.acelerar();
     }
 }
