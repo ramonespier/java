@@ -8,11 +8,8 @@ package java_pack;
 public class Main {
 
     public static void main(String[] args) {
-        Carro meuCarro = new Carro("Ford");
-        Carro meuCarro1 = new Carro("BMW");
-        Carro meuCarro2 = new Carro("Mitsubishi");
+        Carro meuCarro = new Pajero();
 
-        meuCarro2.acelerar();
-        meuCarro.acelerar();
+        meuCarro.parar();
     }
 }
