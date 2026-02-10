@@ -9,7 +9,10 @@ public class Main {
 
     public static void main(String[] args) {
         Carro meuCarro = new Pajero();
+        SerVivo meuSer = new Humano();
 
-        meuCarro.parar();
+        meuSer.respirar();
+        meuCarro.acelerar();
+
     }
 }
