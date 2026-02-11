@@ -1,73 +1,81 @@
-# ☕ Fundamentos de Java e POO
+# ☕ Fundamentos de Java: POO & Collections
 
-Este repositório contém exemplos práticos de Programação Orientada a Objetos (POO) em Java, cobrindo desde a criação de classes simples até conceitos avançados como polimorfismo e interfaces.
+Este repositório é um guia prático de estudos sobre Java, cobrindo desde os pilares da **Programação Orientada a Objetos (POO)** até a manipulação de dados com o **Collections Framework**.
 
 ## 🚀 Conceitos de POO Aplicados
 
-Abaixo estão os pilares e conceitos demonstrados nos arquivos deste projeto:
-
 ### 1. Classes e Objetos
-*   **Classe:** É o "molde" para criar objetos. Exemplo: `Pajero`, `Humano`.
-*   **Objeto:** É a instância real da classe. No arquivo `Main.java`, `meuCarro` é um objeto da classe `Pajero`.
+*   **Classe:** O molde (Ex: `Pajero`, `Humano`).
+*   **Objeto:** A instância real do molde (Ex: `meuCarro`, `meuSer`).
 
 ### 2. Atributos e Métodos
-*   **Atributos:** São as características (variáveis). Ex: `idade` em `SerVivo`, `velocidadeAtual` em `Pajero`.
-*   **Métodos:** São as ações que a classe executa. Ex: `acelerar()`, `respirar()`.
+*   **Atributos:** Variáveis que definem o estado (Ex: `velocidadeAtual`).
+*   **Métodos:** Funções que definem o comportamento (Ex: `acelerar()`).
 
-### 3. Construtores
-*   Utilizados para inicializar o objeto com valores específicos no momento da criação.
-*   No código: `public Humano() { super(20); }` define que todo humano criado já começa com idade 20.
+### 3. Construtores e `super()`
+*   Usados para inicializar o objeto. O comando `super()` chama o construtor da classe pai (Base). No exemplo, `Humano` define a `idade` na classe `SerVivo`.
 
 ### 4. Modificadores de Acesso
-Controlam a visibilidade dos membros da classe:
 *   `public`: Acessível de qualquer lugar.
-*   `protected`: Acessível por classes no mesmo pacote ou por subclasses. (Ex: `idade` em `SerVivo`).
-*   `private`: Acessível apenas dentro da própria classe.
-*   `default` (padrão): Acessível apenas dentro do mesmo pacote.
+*   `protected`: Acessível no mesmo pacote ou por herança.
+*   `private`: Restrito à própria classe.
+*   `default`: Restrito ao pacote.
 
-### 5. Herança (`extends`)
-*   Permite que uma classe herde características e comportamentos de outra.
-*   **Exemplo:** `Humano` estende `SerVivo`, herdando o atributo `idade` e o método `dormir()`.
+### 5. Herança (`extends`) e Classes Abstratas
+*   `SerVivo` é uma **classe abstrata**: ela fornece uma base (`dormir`), mas obriga as filhas a definirem como devem `respirar`.
+*   `Humano` herda de `SerVivo`, aproveitando o que já existe e especializando o comportamento.
 
-### 6. Classes Abstratas
-*   Classes que não podem ser instanciadas diretamente (você não pode dar um `new SerVivo()`).
-*   Serve como um modelo para outras classes. Contém métodos abstratos que **devem** ser implementados pelas filhas.
+### 6. Interfaces (`implements`) e Polimorfismo
+*   `Carro` é uma **Interface**: um contrato que garante que qualquer carro tenha os métodos de acelerar, frear e parar.
+*   **Polimorfismo:** Permite tratar um objeto `Pajero` como um `Carro` genérico, facilitando a troca de implementações no futuro.
 
-### 7. Interfaces (`implements`)
-*   Funciona como um "contrato". Qualquer classe que assinar o contrato (implementar a interface) deve obrigatoriamente fornecer o corpo para os métodos definidos.
-*   **Exemplo:** A interface `Carro` obriga a classe `Pajero` a ter os métodos `acelerar`, `freiar` e `parar`.
+---
 
-### 8. Polimorfismo
-*   É a capacidade de um objeto ser referenciado de várias formas.
-*   **No código:** `Carro meuCarro = new Pajero();`. Note que o tipo da variável é a Interface (`Carro`), mas o objeto real é uma `Pajero`. Isso permite trocar a implementação sem mudar o código que a usa.
+## 📦 Generics & Collections Framework
+
+O Java utiliza **Generics** (os símbolos `< >`) para garantir a segurança de tipos, evitando que você coloque, por exemplo, um número em uma lista que deveria aceitar apenas textos.
+
+### Principais Interfaces de Coleções:
+
+#### 🔹 List (Lista)
+*   **Características:** Ordenada e **permite elementos duplicados**.
+*   **Exemplo:** `ArrayList<String>`. Se você adicionar "Cereja" duas vezes, ela aparecerá duas vezes.
+
+#### 🔹 Set (Conjunto)
+*   **Características:** **Não permite duplicatas**. Ótimo para garantir unicidade.
+*   **Exemplo:** `HashSet<String>`. Se tentar adicionar "Cereja" duas vezes, o conjunto ignorará a segunda entrada.
+
+#### 🔹 Map (Mapa / Dicionário)
+*   **Características:** Estrutura de **Chave e Valor** (semelhante ao Objeto em JS ou Dicionário em Python).
+*   **Exemplo:** `HashMap<String, String>`. Você mapeia uma chave (ex: "nome") para um valor (ex: "Ramon").
+
+#### 🔹 Queue (Fila)
+*   **Características:** Segue a regra do "Primeiro a entrar, primeiro a sair" (FIFO).
+*   **Principais Métodos:**
+    *   `poll()`: Retorna e remove o primeiro da fila (retorna `null` se vazia).
+    *   `peek()`: Apenas "espia" o primeiro da fila, sem remover.
+    *   `remove()`: Semelhante ao poll, mas lança uma **exceção** se a fila estiver vazia.
 
 ---
 
 ## 📁 Estrutura de Arquivos
 
-| Arquivo | Papel no Projeto | Conceito Chave |
+| Pacote | Arquivo | Conceito Chave |
 | :--- | :--- | :--- |
-| `Carro.java` | Interface | Contrato / Abstração |
-| `SerVivo.java` | Classe Abstrata | Herança / Base |
-| `Humano.java` | Subclasse | Especialização / Sobrescrita |
-| `Pajero.java` | Classe Concreta | Implementação de Interface |
-| `Main.java` | Classe Principal | Execução e Polimorfismo |
+| `java_pack` | `Carro.java` | Interface (Contrato) |
+| `java_pack` | `SerVivo.java` | Abstração e Herança |
+| `java_pack` | `Humano.java` | Sobrescrita de métodos (`@Override`) |
+| `java_pack` | `Pajero.java` | Implementação lógica |
+| `java_pack` | `Main.java` | Execução POO e Polimorfismo |
+| `java_collections` | `Generics.java` | List, Set, Map, Queue e Generics |
 
 ---
 
-## 🛠️ Exemplo de Execução
-
-No método `main`, vemos a interação entre os objetos:
-
-```java
-public static void main(String[] args) {
-    Carro meuCarro = new Pajero(); // Polimorfismo
-    SerVivo meuSer = new Humano(); // Polimorfismo
-
-    meuSer.respirar(); // Executa o método sobrescrito em Humano
-    meuCarro.acelerar(); // Executa a lógica de aceleração da Pajero
-}
-```
+## 🛠️ Como executar
+1. Certifique-se de ter o JDK instalado.
+2. Compile os arquivos: `javac -d . *.java`
+3. Execute a classe principal de POO: `java java_pack.Main`
+4. Execute os exemplos de Collections: `java java_collections.Generics`
 
 ---
-*Estudos dirigidos à linguagem Java e boas práticas de POO.*
+*Estudos focados em robustez de código e organização de dados em Java.*
