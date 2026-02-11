@@ -66,5 +66,40 @@ public class Generics {
         // posso usar o LinkedList como uma lista encadeada pura
         // LinkedList<String> linked = new LinkedList<>();
         // dessa forma, terei mais metodos, ja que LinkedList está extendendo uma Queue
+
+        // STREAM API
+        // realizar opreações funmcionais nas nossas collections (estruturas de dados)
+        // filter, map, reduce, agregações
+
+        List<String> nomes = new ArrayList<>();
+        nomes.add("Ramon Coelho");
+        nomes.add("Ramon Melo");
+        nomes.add("Rachel Viana");
+        nomes.add("Rachel Moraes");
+
+        List<String> ramons = nomes
+                .stream()
+                .filter(nome -> nome.startsWith("Ramon"))
+                .toList();
+
+        System.out.println("Ramons: " + ramons);
+
+        List<String> rachelsMap = nomes
+                .stream()
+                .filter(nome -> nome.startsWith("Rachel"))
+                .map(String::toUpperCase)
+                .toList();
+
+        System.out.println("Rachels: " + rachelsMap);
+
+        String rachelsReduce = nomes
+                .stream()
+                .filter(nome -> nome.startsWith("Rachel"))
+                .map(String::toUpperCase)
+                // .map(nome -> nome.replace(" ", "")) // brincar com .map
+                .reduce("Rachel", (x, y) -> x + ", " + y);
+
+        System.out.println("Rachels: " + rachelsReduce);
+
     }
 }
