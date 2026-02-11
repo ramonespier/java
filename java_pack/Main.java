@@ -10,6 +10,10 @@ public class Main {
     public static void main(String[] args) {
         Carro meuCarro = new Pajero();
         SerVivo meuSer = new Humano();
+        Moto motocicleta = new Moto("Yamaha", "Preto", 2015, "FDM5I13");
+
+        // DTOs = data transfer objects
+        // POJOs = plain old java objects
 
         meuSer.respirar();
         meuCarro.acelerar();
